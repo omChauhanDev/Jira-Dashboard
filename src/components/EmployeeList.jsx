@@ -1,12 +1,17 @@
-import { Trash2 } from 'lucide-react'
+import { Trash2 } from "lucide-react"
 
-export default function EmployeeList({ employees, deleteEmployee, setSelectedEmployee }) {
+export default function EmployeeList({ employees, deleteEmployee, setSelectedEmployee, selectedEmployee }) {
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-semibold mb-4">Employees</h2>
       <ul className="space-y-2">
-        {employees.map(employee => (
-          <li key={employee.id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow">
+        {employees.map((employee) => (
+          <li
+            key={employee.id}
+            className={`flex items-center justify-between p-4 rounded-lg shadow transition-colors ${
+              employee.id === selectedEmployee ? "bg-blue-100 border-2 border-blue-500" : "bg-white hover:bg-gray-50"
+            }`}
+          >
             <button
               onClick={() => setSelectedEmployee(employee.id)}
               className="text-lg hover:text-blue-600 transition-colors"

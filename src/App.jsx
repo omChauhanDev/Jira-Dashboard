@@ -18,6 +18,9 @@ function App() {
   const deleteEmployee = (id) => {
     setEmployees(employees.filter(employee => employee.id !== id))
     setTasks(tasks.map(task => task.assignee === id ? { ...task, assignee: null } : task))
+    if (selectedEmployee === id) {
+      setSelectedEmployee(null)
+    }
   }
 
   const addTask = (task) => {
@@ -39,6 +42,10 @@ function App() {
   const unassignTask = (taskId) => {
     setTasks(tasks.map(task => task.id === taskId ? { ...task, assignee: null } : task))
   }
+  const getSelectedEmployeeName = () => {
+    const employee = employees.find((emp) => emp.id === selectedEmployee)
+    return employee ? employee.name : ""
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -51,6 +58,7 @@ function App() {
               employees={employees} 
               deleteEmployee={deleteEmployee}
               setSelectedEmployee={setSelectedEmployee}
+              selectedEmployee={selectedEmployee}
             />
           </div>
           <div className="w-full lg:w-3/4">
@@ -66,6 +74,7 @@ function App() {
                 tasks={tasks.filter(task => task.assignee === selectedEmployee)}
                 updateTaskStatus={updateTaskStatus}
                 unassignTask={unassignTask}
+                employeeName={getSelectedEmployeeName()}
               />
             )}
           </div>

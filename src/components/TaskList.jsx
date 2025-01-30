@@ -22,7 +22,7 @@ export default function TaskList({ tasks, addTask, deleteTask, assignTask, emplo
       <TaskForm addTask={addTask} />
       <div className="mt-4 space-y-2">
         {tasks.map((task) => (
-          <div key={task.id} className="grid grid-cols-3 items-center justify-center gap-4">
+          <div key={task.id} className="flex flex-col sm:grid sm:grid-cols-3 items-center justify-center gap-4">
             <div className="w-full">
               <Task task={task} deleteTask={deleteTask} />
             </div>
@@ -40,7 +40,7 @@ export default function TaskList({ tasks, addTask, deleteTask, assignTask, emplo
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex justify-center items-center w-xl">
+            <div className="flex justify-center items-center w-full">
               <button
                   onClick={() => handleAssign(task.id)}
                   className="ml-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"

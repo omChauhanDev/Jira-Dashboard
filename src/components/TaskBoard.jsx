@@ -3,10 +3,12 @@ import Task from "./Task"
 
 const columns = ["To Do", "In Progress", "Completed"]
 
-export default function TaskBoard({ tasks, updateTaskStatus, unassignTask }) {
+export default function TaskBoard({ tasks, updateTaskStatus, unassignTask, employeeName }) {
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-4">Task Board</h2>
+      <div className="p-4 rounded-t-lg mb-4">
+        <h2 className="text-2xl font-semibold">Task Board for {employeeName}</h2>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {columns.map((column) => (
           <Column
